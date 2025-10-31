@@ -1,23 +1,16 @@
 using Assets.T_Unit_Assets.Scripts;
 
-using Unity.VisualScripting;
-
 using UnityEngine;
 
 public class CollisionDetector : MonoBehaviour
 {
     public bool CollisionDetected = false;
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        // Makes sure we can only detect hits on the player
-        if (collision.gameObject == Util.Player)
-            CollisionDetected = true;
-    }
+    // You can't swing a sword through a wall (unless the sword is sharp and/or the wall is soft)
 
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject == Util.Player)
-            CollisionDetected = false;
-    }
+    void OnCollisionEnter(Collision collision)
+        => CollisionDetected = true;
+
+    void OnCollisionExit(Collision collision)
+        => CollisionDetected = false;
 }
